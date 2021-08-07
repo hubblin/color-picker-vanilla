@@ -1,0 +1,19 @@
+.hovered-color{
+    width: 300px;
+    height: 400px;
+    border: 1px solid black
+}
+
+
+.selected_container{
+    width : 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: orange;
+}
+
+.selected_container .selected-color{
+    width: 300px;
+    height: 400px;
+    background-color: red;
+}
