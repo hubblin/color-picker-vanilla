@@ -11,18 +11,21 @@
     <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-    <section class="picker_container">
+    <section class="container">
         <div class="picker">
-            <canvas id="mycanvas"></canvas>
+            <div class="canvas_area">
+                <canvas id="mycanvas"></canvas>
+            </div>
+            <button id="pasteBtn">붙여넣기</button>
         </div>
-        
-        <div class="hovered-color"></div>
-        
-        <div class="selected_container">
-            <div class="selected-color"></div>
-        </div>
-    
 
+        <div class="selector">
+            <div class="hovered-color"></div>
+            
+            <div class="selected_container">
+                <div class="selected-color"></div>
+            </div>
+        </div>
     </section>
 </body>
 </html>
