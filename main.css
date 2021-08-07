@@ -26,11 +26,10 @@
 }
 
 .container .selector{
-    width: 400px;
+    width: 120px;
     height: 100vh;
     background-color: salmon;
     overflow: scroll;
-    
 }
 
 
