@@ -9,7 +9,7 @@
 }
 
 .container .picker .canvas_area{
-    height: 100vh;
+    height: calc(100vh - 40px);
     overflow: scroll;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
     display: none;
 }
 
-.container .picker #pasteBtn{
+.container .picker #paste-btn{
     width: 100%;
     height: 40px;
     font-weight: bolder;
@@ -45,6 +45,8 @@
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    overflow: auto;
 }
 
 /* 색 선택 부분 */
@@ -63,7 +65,7 @@
 .container .selector .selected_container .selected-color{
     width: 100%;
     height: 60px;
-    text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
 }

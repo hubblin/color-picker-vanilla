@@ -14,7 +14,7 @@ let pos = {top: 0, left: 0, x: 0, y: 0};
 let isDown = false;
 
 //버튼 액션
-let pasteBtn = document.getElementById('pasteBtn');
+let pasteBtn = document.getElementById('paste-btn');
 
 //drag to scroll 기능
 const mouseDownHandler = function(e){
@@ -48,10 +48,12 @@ const mouseUpHandler = function(e){
 
 //캔버스에 사진 추가
 function addCanvasAction(e){
-    info.innerText = '';
+    
     let items = e.clipboardData.items;
+    console.log(items)
     for(index in items){
         let item = items[index];
+        
         if(item.kind === 'file'){
             let blob = item.getAsFile();
             let reader = new FileReader();
@@ -74,10 +76,36 @@ function addCanvasAction(e){
 
 document.onpaste = addCanvasAction;
 
+pasteBtn.onclick = async function(){
+
+    let blob;
+
+    try{
+        const clipboardItems = await navigator.clipboard.read();
+
+        for(const clipboardItem of clipboardItems){
+            for(const type of clipboardItem.types){
+                blob = await clipboardItem.getType(type);
+                if(type.startsWith('image')){
+                    let urlCreator = window.URL || window.webkitURL;
+                    let imageUrl = urlCreator.createObjectURL(blob);
+                    addToCanvas(ctx, imageUrl);
+                }
+            }
+        }
+    }catch(error){
+        console.log('paste error', error);
+    }
+
+
+
+}
+
 
 
 
 function addToCanvas(ctx, image){
+    info.innerText = '';
     let img = new Image();
     img.src = image;
     
@@ -94,14 +122,14 @@ function rgbaToHex(data){
     let r = data[0].toString(16);
     let g = data[1].toString(16);
     let b = data[2].toString(16);
-    let a = Math.round(data[3] * 255).toString(16);
 
     if(r.length === 1) r = "0" + r;
     if(g.length === 1) g = "0" + g;
     if(b.length === 1) b = "0" + b;
-    if(a.length === 1) a = "0" + a;
 
-    return '#' + r+g+b+a;
+
+    console.log(r, g, b)
+    return '#' + r+g+b;
 }
 
 function pick(event, destination){
