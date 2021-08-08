@@ -32,7 +32,6 @@ container.addEventListener('mousedown', mouseDownHandler);
 
 const mouseMoveHandler = function(e){
     if(isDown){
-        
         const  dx = e.clientX - pos.x;
         const dy = e.clientY - pos.y;
 
