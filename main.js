@@ -16,6 +16,9 @@ let isDown = false;
 //버튼 액션
 let pasteBtn = document.getElementById('paste-btn');
 
+//각각 요소들의 구분을 위한 변수
+let cnt = 1;
+
 //drag to scroll 기능
 const mouseDownHandler = function(e){
     isDown = true;
@@ -76,6 +79,8 @@ function addCanvasAction(e){
 
 document.onpaste = addCanvasAction;
 
+
+//버튼 클릭으로 붙여넣기
 pasteBtn.onclick = async function(){
 
     let blob;
@@ -96,9 +101,6 @@ pasteBtn.onclick = async function(){
     }catch(error){
         console.log('paste error', error);
     }
-
-
-
 }
 
 
@@ -164,9 +166,10 @@ function addpick(event){
     div.style.background = rgba;
     div.innerHTML = rgba + '<br/>' +  hexCode;
     div.className = 'selected-color';
+    div.setAttribute('id', 'pick'+cnt);
+    div.setAttribute('onclick', 'thisPick(' + cnt+ ")");
 
     selectedContainer.insertBefore(div, selectedContainer.firstChild);
-
 }
 
 canvas.addEventListener('mousemove', function(event){
@@ -176,3 +179,10 @@ canvas.addEventListener('mousemove', function(event){
 canvas.addEventListener('click', function(event){
     addpick(event);
 })
+
+
+async function thisPick(cnt){
+    let getlist = document.getElementById('pick' + cnt);
+    console.log(getlist.innerHTML.substr(-7, 8));
+    await navigator.clipboard.writeText(getlist.innerHTML.substr(-7, 8));
+}
