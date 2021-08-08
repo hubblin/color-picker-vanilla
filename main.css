@@ -1,6 +1,6 @@
 .container{
     width: 100%;
-    background-color: royalblue;
+    background-color: #f5f5f5;
     display: flex;
 }
 
@@ -11,7 +11,13 @@
 .container .picker .canvas_area{
     height: calc(100vh - 40px);
     overflow: scroll;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .picker .canvas_area::-webkit-scrollbar{
+    display: none;
 }
 
 .container .picker #pasteBtn{
@@ -28,11 +34,35 @@
 .container .selector{
     width: 120px;
     height: 100vh;
-    background-color: salmon;
+    background-color: #f5f5f5;
+    border-left: 2px solid #EDECED;
+}
+
+.container .selector .hovered-color{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+/* 색 선택 부분 */
+.container .selector .selected_container{
+    width: 100%;
     overflow: scroll;
+    height: calc(100vh - 100px);
+
+}
+
+.container .selector .selected_container::-webkit-scrollbar{
+    display: none;
 }
 
 
-.container .selector::-webkit-scrollbar{
-    display: none;
+.container .selector .selected_container .selected-color{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
