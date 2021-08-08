@@ -1,14 +1,20 @@
+
+// 캔버스 조작
 let canvas = document.getElementById('mycanvas');
 let ctx = canvas.getContext('2d');
+let info = document.querySelector('.cnavas_info');
 
 let hoveredColor = document.querySelector('.hovered-color');
 let selectedContainer = document.querySelector('.selected_container');
 
-
+//캔버스 영역 조작
 let container = document.querySelector('.canvas_area');
 
 let pos = {top: 0, left: 0, x: 0, y: 0};
 let isDown = false;
+
+//버튼 액션
+let pasteBtn = document.getElementById('pasteBtn');
 
 //drag to scroll 기능
 const mouseDownHandler = function(e){
@@ -41,7 +47,8 @@ const mouseUpHandler = function(e){
 
 
 //캔버스에 사진 추가
-document.onpaste = function(e){
+function addCanvasAction(e){
+    info.innerText = '';
     let items = e.clipboardData.items;
     for(index in items){
         let item = items[index];
@@ -58,13 +65,16 @@ document.onpaste = function(e){
             let imageUrl = urlCreator.createObjectURL(blob);
 
             
-            
-
+        
             addToCanvas(ctx, imageUrl);
         }
 
     }
 }
+
+document.onpaste = addCanvasAction;
+
+
 
 
 function addToCanvas(ctx, image){

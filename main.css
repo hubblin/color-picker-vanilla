@@ -9,11 +9,12 @@
 }
 
 .container .picker .canvas_area{
-    height: calc(100vh - 40px);
+    height: 100vh;
     overflow: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .container .picker .canvas_area::-webkit-scrollbar{
