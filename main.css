@@ -5,10 +5,11 @@
 }
 
 .container .picker{
-    flex-grow: 1;
+    width: calc(100vw - 120px)
 }
 
 .container .picker .canvas_area{
+    width: 100%;
     height: calc(100vh - 40px);
     overflow: scroll;
     display: flex;
