@@ -168,8 +168,10 @@ function addpick(event){
     div.className = 'selected-color';
     div.setAttribute('id', 'pick'+cnt);
     div.setAttribute('onclick', 'thisPick(' + cnt+ ")");
+    div.setAttribute('ondblclick', 'thisDbPick(' + cnt + ')');
 
     selectedContainer.insertBefore(div, selectedContainer.firstChild);
+    cnt++;
 }
 
 canvas.addEventListener('mousemove', function(event){
@@ -180,9 +182,31 @@ canvas.addEventListener('click', function(event){
     addpick(event);
 })
 
+let clickState = null;
+let clickCount = 0;
 
-async function thisPick(cnt){
+function thisDbPick(cnt){
+    ClearClickState();
     let getlist = document.getElementById('pick' + cnt);
-    console.log(getlist.innerHTML.substr(-7, 8));
-    await navigator.clipboard.writeText(getlist.innerHTML.substr(-7, 8));
+    selectedContainer.removeChild(getlist);
+}
+
+function thisPick(cnt){
+    if(clickState == null || clickCount < 2){
+        clickState = setTimeout("thisPick("+cnt+")", 200);
+        clickCount++;
+    }else{
+        ClearClickState();
+        let getlist = document.getElementById('pick' + cnt);
+        if(getlist !== null){
+            console.log(getlist.innerHTML.substr(-7, 8));
+            navigator.clipboard.writeText(getlist.innerHTML.substr(-7, 8));
+        }
+    }
+}
+
+function ClearClickState(){
+    clearTimeout(clickState);
+    clickState = null;
+    clickCount = 0;
 }
