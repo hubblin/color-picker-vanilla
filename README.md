@@ -8,7 +8,7 @@
 <br/>
 
 **작업시간** : 약 _7시간_  
-**링크** : https://sad-heyrovsky-5a07d8.netlify.app  
+**링크** : [서비스 링크](https://sad-heyrovsky-5a07d8.netlify.app){: target="_blank"}  
 (netify 서비스를 이용하여 배포하였음)
 <br/><br/>
 
